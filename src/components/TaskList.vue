@@ -8,6 +8,9 @@
 			>
 				<div class="task_cell"><span>Name task:</span> {{ task.todo }}</div>
 				<div class="task_cell"><span>Time:</span> {{ task.time }}</div>
+		        <button class="delete_btn" @click="removeTask(task, index)">
+		        	<i class="fas fa-trash-alt"></i>
+		        </button>
 			</li>
 		</ul>
 	</div>	
@@ -36,6 +39,11 @@ export default {
 				},
 			]
 		}
+	},
+	methods: {
+	    removeTask(task, index) {
+	    	this.tasks.splice(index, 1);
+	    },
 	}
 }
 
