@@ -1,9 +1,11 @@
 @import "reset"
 
 h1
-	margin-bottom: 30px
+	margin-bottom: 40px
 
 .todo_list
+	transition: all .5s
+	position: relative
 	li
 		margin-bottom: 20px
 		background: #ffffff
@@ -11,6 +13,7 @@ h1
 		border-radius: 5px
 		position: relative
 		border: 1px solid #d0e6e6
+		transition: all 0.5s
 
 .task_cell
 	span
@@ -23,6 +26,7 @@ h1
   right: 20px
   top: 50%
   transform: translateY(-50%)
+  background: transparent
   i
     font-size: 22px
     transition: .3s linear
@@ -33,6 +37,7 @@ h1
 
 .no_task
 	padding: 30px 0
+	transition: .3s linear
 
 .input_box
 	margin-bottom: 10px
@@ -46,6 +51,7 @@ h1
 .add_task
 	width: 200px
 	margin-bottom: 40px
+	position: relative
 
 .btn_add
 	width: 100%
@@ -53,6 +59,52 @@ h1
 	border-radius: 3px
 	color: #ffffff
 	background: #00f
-	transition: .3s linear
+	transition: all ease 0.3s
 	&:hover
 		background: #5e5eab
+
+.alert
+	color: #e01313
+	position: absolute
+	top: 0
+	transform: translateY(-120%)
+	// animation: fade-effect 0.3s forwards
+	// animation-duration: 3s 
+
+// @keyframes fade-effect
+// 	0%
+// 		opacity: 1
+// 	90%
+// 		opacity: 1
+// 	100%
+// 		opacity: 0
+
+
+//transition effect
+.slide-enter,
+.slide-leave-to
+	opacity: 0
+
+.slide-enter-active
+	animation: slide-in 0.3s ease-out
+	transition: all 0.3s ease-out
+
+.slide-leave-active
+	animation: slide-out 0.3s ease-out forwards
+	transition: all 0.3s ease-out
+	position: absolute
+
+.slide-move
+	transition: transform 0.3s ease-out
+
+@keyframes slide-in
+	from
+		transform: translateX(30px)
+	to
+		transform: translateX(0)
+
+@keyframes slide-out
+	from
+		transform: translateX(0)
+	to
+		transform: translateX(30px)
