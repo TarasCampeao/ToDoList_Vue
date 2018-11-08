@@ -3,6 +3,11 @@
 h1
 	margin-bottom: 40px
 
+.input_stnd
+	border: 1px solid gray
+	line-height: 30px
+	padding: 0 10px
+
 .todo_list
 	transition: all .5s
 	position: relative
@@ -16,6 +21,8 @@ h1
 		transition: all 0.5s
 
 .task_cell
+	padding: 0 30px
+	position: relative
 	span
 		color: gray
 		min-width: 100px
@@ -42,11 +49,9 @@ h1
 .input_box
 	margin-bottom: 10px
 	input
-		border: 1px solid gray
 		border-radius: 3px
-		line-height: 30px
-		padding: 0 10px
 		width: 100%
+		@extend .input_stnd
 
 .add_task
 	width: 200px
@@ -68,43 +73,32 @@ h1
 	position: absolute
 	top: 0
 	transform: translateY(-120%)
-	// animation: fade-effect 0.3s forwards
-	// animation-duration: 3s 
 
-// @keyframes fade-effect
-// 	0%
-// 		opacity: 1
-// 	90%
-// 		opacity: 1
-// 	100%
-// 		opacity: 0
+.btn_change
+	width: 100px
+	line-height: 32px
+	border-radius: 3px
+	color: #ffffff
+	background: #00f
+	transition: all ease 0.3s
+	&:hover
+		background: #5e5eab
 
-
-//transition effect
-.slide-enter,
-.slide-leave-to
-	opacity: 0
-
-.slide-enter-active
-	animation: slide-in 0.3s ease-out
-	transition: all 0.3s ease-out
-
-.slide-leave-active
-	animation: slide-out 0.3s ease-out forwards
-	transition: all 0.3s ease-out
+.btn_switch
 	position: absolute
+	top: 50%
+	transform: translateY(-50%)
+	background: transparent
+	font-size: 16px
+	left: 0
+	&:hover
+	    i
+	      color: #ab5f5f
 
-.slide-move
-	transition: transform 0.3s ease-out
+.edit_input
+	width: 200px
+	border-radius: 3px
+	@extend .input_stnd
 
-@keyframes slide-in
-	from
-		transform: translateX(30px)
-	to
-		transform: translateX(0)
-
-@keyframes slide-out
-	from
-		transform: translateX(0)
-	to
-		transform: translateX(30px)
+.switch_text
+	padding: 10px 0 0 0

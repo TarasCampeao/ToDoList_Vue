@@ -5,31 +5,34 @@
 			<div class="input_box">
 				<input type="text" v-model="task.name" placeholder="Name task"/>
 			</div>
-			<div class="input_box">
-				<input type="text" v-model="task.time" placeholder="Time task"/>
-			</div>
 			<button type="submit" class="t-up btn_add" @click="addTask()">Add task</button>
-			<p class="alert" v-if="showAlert">{{ alertMessage }}</p>
+			<p class="alert" v-if="!showAlert">{{ alertMessage }}</p>
 		</form>
 		<div v-if="tasks.length">
-			<transition-group 
-				name="slide"
-				mode="out-in"
-				class="todo_list"
-				tag="ul"
-				key="list"
-			>
+			<ul class="todo_list">
 				<li
 					v-for="(task, index) in tasks"
 					:key="task.name"
 				>
-					<div class="task_cell"><span>Name task:</span> {{ task.name }}</div>
-					<div class="task_cell"><span>Time:</span> {{ task.time }}</div>
+					<div class="task_cell">
+				        <button class="btn_switch" @click="changeEditing(task.name)">
+				        	<i class="far fa-edit"></i>
+						</button>
+						{{ task.name }}
+					</div>
+					<div class="switch_text" v-if="task.isEditing">
+			           <input
+				           type="text"
+				           v-model="editName"
+				           class="edit_input"
+			           >	
+			           <button class="btn_change" @click="editTask(task.name)">Save change</button>
+					</div>
 			        <button class="delete_btn" @click="removeTask(task, index)">
 			        	<i class="fas fa-trash-alt"></i>
 			        </button>
 				</li>
-			</transition-group>
+			</ul>
 		</div>
 		<p class="no_task" v-else>No tasks!</p>
 	</div>	
@@ -37,51 +40,68 @@
 
 
 <script>
-	
 
 export default {
 	name: 'TaskList',
 	data() {
 		return {
+			editName: '',
 			tasks: [
 				{
 					name: 'Write text',
-					time: '20 min'
+					isEditing: false
 				},
 				{
 					name: 'Show all tasks',
-					time: '10 min'
+					isEditing: false
 				},
 				{
 					name: 'Play cards',
-					time: '15 min'
+					isEditing: false
 				},
 			],
 			task: {
 				name: '',
-				time: ''
 			},
-			showAlert: false,
-			allertMessage: '',
+			showAlert: true,
+			allertMessage: ''
 		}
 	},
 	methods: {
 		addTask() { 
-	      if (this.task.name && this.task.time) {
+	      if (this.task.name) {
 	        this.tasks.push(this.task)
 	        this.task = {
 	          name: '',
-	          time: ''
+	          isEditing: false
 	        }
-	      } else if(this.task.name =='' && this.task.time ==''){
+	      } else if(this.task.name ==''){
 	            this.alertMessage = "Please fill the inputs."
 	            this.showAlert = true;
           }
 		},
 	    removeTask(task, index) {
 	    	this.tasks.splice(index, 1);
+	    },
+	    changeEditing(taskName) {
+	      this.editName = taskName;
+	      this.tasks = this.tasks.map(task => {
+	        if(task.name === taskName) {
+	          task.isEditing = !task.isEditing;
+	        }
+	        return task;
+	      })
+	    },
+	    editTask(taskName) {
+	      this.tasks = this.tasks.map(task => {
+	        if(task.name === taskName) {
+	          task.isEditing = !task.isEditing;
+	          task.name = this.editName;
+	        }
+	        return task;
+	      })
 	    }
-	}
+	},
 }
 
 </script>
