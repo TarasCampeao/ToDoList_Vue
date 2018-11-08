@@ -5,8 +5,7 @@
 			<div class="input_box">
 				<input type="text" v-model="task.name" placeholder="Name task"/>
 			</div>
-			<button type="submit" class="t-up btn_add" @click="addTask()">Add task</button>
-			<p class="alert" v-if="!showAlert">{{ alertMessage }}</p>
+			<button :disabled="!task.name" type="submit" class="t-up btn_add" @click="addTask()">Add task</button>
 		</form>
 		<div v-if="tasks.length">
 			<ul class="todo_list">
@@ -62,23 +61,19 @@ export default {
 			],
 			task: {
 				name: '',
-			},
-			showAlert: true,
-			allertMessage: ''
+			}
 		}
 	},
 	methods: {
 		addTask() { 
-	      if (this.task.name) {
+	      if (this.task.name !== '') {
 	        this.tasks.push(this.task)
 	        this.task = {
 	          name: '',
 	          isEditing: false
 	        }
-	      } else if(this.task.name ==''){
-	            this.alertMessage = "Please fill the inputs."
-	            this.showAlert = true;
-          }
+	        this.task == '';
+	      }
 		},
 	    removeTask(task, index) {
 	    	this.tasks.splice(index, 1);

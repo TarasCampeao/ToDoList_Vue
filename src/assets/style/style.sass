@@ -67,6 +67,8 @@ h1
 	transition: all ease 0.3s
 	&:hover
 		background: #5e5eab
+	&:disabled
+		pointer-events: none
 
 .alert
 	color: #e01313
@@ -98,6 +100,7 @@ h1
 .edit_input
 	width: 200px
 	border-radius: 3px
+	margin-right: 10px
 	@extend .input_stnd
 
 .switch_text
