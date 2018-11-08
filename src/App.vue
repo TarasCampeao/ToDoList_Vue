@@ -4,15 +4,20 @@
 </style>
 <template>
   <div id="app">
+    <div class="container">
+      <task-list></task-list>
+    </div>
   </div>
 </template>
 
 <script>
+import TaskList from './components/TaskList.vue'
+
 
 export default {
   name: 'app',
   components: {
-
+    TaskList,
   },
 };
 </script>
