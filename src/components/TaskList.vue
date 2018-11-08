@@ -2,9 +2,13 @@
 	<div>
 		<h1>Task List</h1>
 		<form @submit.prevent="addtask" class="add_task">
-			<input type="text" v-model="task.name" placeholder="Our task"/>
-			<input type="text" v-model="task.time" placeholder="Time task"/>
-			<button type="submit" class="t-up" @click="addTask()">Add task</button>
+			<div class="input_box">
+				<input type="text" v-model="task.name" placeholder="Name task"/>
+			</div>
+			<div class="input_box">
+				<input type="text" v-model="task.time" placeholder="Time task"/>
+			</div>
+			<button type="submit" class="t-up btn_add" @click="addTask()">Add task</button>
 		</form>
 		<div>
 			<p class="no_task" v-if="!tasks.length">No tasks!</p>
