@@ -14,9 +14,6 @@
 					:key="task.name"
 					:class="{'complete': task.isCompleted}"
 				>
-					<!-- <button :class="{active: act}" @click="act = !act">Proccess</button> -->
-					<!--  <span class="title-status" :class="{'complete': task.complete, 'in-progress': !task.complete}" v-text="completeStatus"></span> -->
-					 <!-- <button class="status-toggle" @click='toggleStatus' v-text="completeStatus"></button> -->
 					<div class="task_cell">
 				        <button class="btn_switch" @click="changeEditing(task.name)">
 				        	<i class="far fa-edit"></i>
