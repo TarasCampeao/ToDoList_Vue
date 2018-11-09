@@ -12,12 +12,16 @@
 				<li
 					v-for="(task, index) in tasks"
 					:key="task.name"
+					:class="{'complete': task.isCompleted}"
 				>
+					<!-- <button :class="{active: act}" @click="act = !act">Proccess</button> -->
+					<!--  <span class="title-status" :class="{'complete': task.complete, 'in-progress': !task.complete}" v-text="completeStatus"></span> -->
+					 <!-- <button class="status-toggle" @click='toggleStatus' v-text="completeStatus"></button> -->
 					<div class="task_cell">
 				        <button class="btn_switch" @click="changeEditing(task.name)">
 				        	<i class="far fa-edit"></i>
 						</button>
-						{{ task.name }}
+						<p  @click="task.isCompleted = !task.isCompleted" class="check_tsk">{{ task.name }}</p>
 					</div>
 					<div class="switch_text" v-if="task.isEditing">
 			           <input
@@ -44,18 +48,22 @@ export default {
 	name: 'TaskList',
 	data() {
 		return {
+			isCompleted: false,
 			editName: '',
 			tasks: [
 				{
 					name: 'Write text',
+					isCompleted: false,
 					isEditing: false
 				},
 				{
 					name: 'Show all tasks',
+					isCompleted: false,
 					isEditing: false
 				},
 				{
 					name: 'Play cards',
+					isCompleted: false,
 					isEditing: false
 				},
 			],
@@ -70,6 +78,7 @@ export default {
 	        this.tasks.push(this.task)
 	        this.task = {
 	          name: '',
+	          isCompleted: false,
 	          isEditing: false
 	        }
 	        this.task == '';
@@ -95,7 +104,7 @@ export default {
 	        }
 	        return task;
 	      })
-	    }
+	    },
 	},
 }
 

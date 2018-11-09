@@ -105,3 +105,20 @@ h1
 
 .switch_text
 	padding: 10px 0 0 0
+
+.work
+	pointer-events: none
+
+.check_tsk
+	cursor: pointer
+	transition: .3s linear
+	&:hover
+		opacity: 0.5
+		transition: .3s linear
+
+.complete
+	opacity: 1
+	.check_tsk
+		text-decoration: line-through
+		&:hover
+			opacity: 1
